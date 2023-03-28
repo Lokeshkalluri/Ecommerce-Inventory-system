@@ -1,0 +1,6 @@
+OrderID,CustomerID,OrderDate,OrderTotal,PaymentMethod,DeliveryAddress,OrderStatus
+1,3 ,01-02-2023,50,Credit Card,47 Shirley Street Highland Park,Processing
+2,2 ,22-02-2023,75,PayPal,29 Chester Street Yelgun,Shipped
+3,1 ,14-05-2023,100,Cash,4781 Finwood Road Spotswood,Pending
+4,4 ,20-04-2023,125,Check,79 Grayson Street Munderoo,Cancelled
+5,4 ,26-06-2023,150,Debit Card0,79 Grayson Street Munderoo,Delivered

@@ -1,0 +1,6 @@
+ShipmentID,EmployeeID,ShipmentDate,DeliveryAddress,ShipmentStatus
+1,2,10-01-2023,29 Chester Street Yelgun,Shipped
+2,5,18-02-2023,79 Grayson Street Munderoo,Pending
+3,1,10-03-2023,47 Shirley Street Highland Park,Delivered
+4,3,02-03-2023,4781 Finwood Road Spotswood,Pending
+5,3,22-02-2023,79 Grayson Street Munderoo,Shipped
