@@ -2,7 +2,7 @@
 -- two insert statements
 INSERT INTO Customer VALUES (6, 'John', 'Doe', 'johndoe@gmail.com', 816793696);
 
-INSERT INTO Products VALUES (17, 'Smartphone', 'A high-quality smartphone advanced features', 'Electronics', 500, 100);
+INSERT INTO Products VALUES (17, 'Smartphone', 'A high-quality smartphone advanced features', 'Electronics', 500, 100, 1004);
 
 -- two update statements
 UPDATE Products
@@ -12,11 +12,11 @@ WHERE ProductID = 35;
 SELECT * FROM Products;
 
 
-UPDATE Inventory
-SET QuantityReceived = 100
-WHERE InventoryID = 40;
+UPDATE Sales
+SET SaleQuantity = 100
+WHERE SaleID = 1032;
 
-SELECT * FROM Inventory;
+SELECT * FROM Sales;
 
 -- the delete statement
 DELETE FROM Shipment
@@ -41,8 +41,9 @@ JOIN Shipment AS SH ON S.SaleID = SH.SaleID;
 
 -- two that use summary statements
 SELECT P.ProductID, P.ProductName, SUM(S.SaleQuantity) AS TotalSales
-FROM Sales AS S INNER JOIN Products AS P 
-ON S.ProductID = P.ProductID
+FROM Sales AS S INNER JOIN Product_Sales AS PS 
+ON S.SaleID = PS.SaleID INNER JOIN Products AS P 
+ON PS.ProductID = P.ProductID
 GROUP BY P.ProductID, P.ProductName;
 
 
@@ -54,8 +55,9 @@ GROUP BY O.OrderID;
 -- the multi-table query
 SELECT O.OrderDate, P.ProductName, S.SalePrice, S.SaleQuantity
 FROM Orders AS O INNER JOIN Sales AS S 
-ON O.OrderID = S.OrderID 
-INNER JOIN Products AS P ON S.ProductID = P.ProductID;
+ON O.OrderID = S.OrderID INNER JOIN Product_Sales AS PS 
+ON S.SaleID = PS.SaleID INNER JOIN Products AS P 
+ON PS.ProductID = P.ProductID;
 
 -- query of your choice
 SELECT C.CustomerID, CONCAT(C.FirstName, ' ', C.LastName) AS 'CustomerName', SUM(OrderTotal) AS 'TotalPurchases'
