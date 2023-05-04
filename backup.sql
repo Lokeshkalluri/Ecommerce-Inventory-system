@@ -261,6 +261,25 @@ LOCK TABLES `sales` WRITE;
 INSERT INTO `sales` VALUES (1030,'2023-01-20',15,50,2,4),(1031,'2023-03-15',22,88,3,1),(1032,'2023-04-10',100,78,1,5),(1033,'2023-03-25',18,48,1,2);
 /*!40000 ALTER TABLE `sales` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `Product_Quantity_T` AFTER INSERT ON `sales` FOR EACH ROW BEGIN
+    UPDATE Products
+    SET QuantityAvailable = QuantityAvailable - NEW.SaleQuantity
+    WHERE ProductID = NEW.ProductID;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `shipment`
@@ -330,9 +349,9 @@ UNLOCK TABLES;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
 /*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb4 */;
-/*!50001 SET character_set_results     = utf8mb4 */;
-/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 SET character_set_client      = cp850 */;
+/*!50001 SET character_set_results     = cp850 */;
+/*!50001 SET collation_connection      = cp850_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
 /*!50001 VIEW `cust_order_v` AS select `c`.`FirstName` AS `FirstName`,`c`.`LastName` AS `LastName`,`s`.`SaleQuantity` AS `SaleQuantity`,`o`.`OrderStatus` AS `OrderStatus`,`o`.`OrderDate` AS `OrderDate`,`o`.`OrderTotal` AS `OrderTotal` from ((`customer` `c` join `orders` `o`) join `sales` `s`) where ((`c`.`CustomerID` = `o`.`CustomerID`) and (`o`.`OrderID` = `s`.`OrderID`) and (`s`.`SaleQuantity` > 15)) */;
@@ -348,9 +367,9 @@ UNLOCK TABLES;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
 /*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb4 */;
-/*!50001 SET character_set_results     = utf8mb4 */;
-/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 SET character_set_client      = cp850 */;
+/*!50001 SET character_set_results     = cp850 */;
+/*!50001 SET collation_connection      = cp850_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
 /*!50001 VIEW `emp_sale_quantity_v` AS select `e`.`EmployeeID` AS `EmployeeID`,`e`.`FirstName` AS `FirstName`,`p`.`ProductName` AS `ProductName`,`p`.`Category` AS `Category`,`s`.`SalePrice` AS `SalePrice`,sum(`s`.`SaleQuantity`) AS `SaleQuantitySum` from (((`employees` `e` join `sales` `s`) join `products` `p`) join `product_sales` `ps`) where ((`e`.`EmployeeID` = `s`.`EmployeeID`) and (`s`.`SaleID` = `ps`.`SaleID`) and (`ps`.`ProductID` = `p`.`ProductID`)) group by `e`.`EmployeeID`,`e`.`FirstName`,`p`.`ProductName`,`p`.`Category`,`s`.`SalePrice` */;
@@ -367,4 +386,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-04-24 20:08:56
+-- Dump completed on 2023-05-01 18:58:14
