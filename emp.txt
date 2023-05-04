@@ -1,0 +1,5 @@
+(1, 'Harry', 'Lort', 'harrylort@gmail.com', 26197252)
+(2, 'Bob', 'Johnson', 'bjohnson@gmail.com', 789456123)
+(3, 'Sarah', 'Jones', 'sjones@gmail.com', 234567890)
+(4, 'Mike', 'Williams', 'mikewilliams@gmail.com', 567890134)
+(5, 'Audrey', 'Proeschel', 'audreyproeschel@gmail.com', 24009994)

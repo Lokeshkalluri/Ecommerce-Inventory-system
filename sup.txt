@@ -1,0 +1,3 @@
+(1001, 'Buy Bulk Liquidation Pallets', 'John Smith', 'john@gmail.com', 301123567, '13 Kerma Crescent Ben Bullen', 35)
+(1002, 'General Merchandise Inventory', 'Mikayla Nicoll', 'mikaylanicoll@gmail.com', 954235678, '5 Raglan Street Wrattens Forest', 12)
+(1003, 'Truckloads of Mixed Merchandise', 'Sofia McWilliams', 'sofiamc@gmail.com', 617346789, '38 Elizabeth Street', 65)
